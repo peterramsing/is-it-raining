@@ -11,8 +11,6 @@ function showPosition(position) {
     getWeatherData(latitude, longitude);
 }
 
-window.onload = getLocation();
-
 
 var xmlHttp = null;
 
@@ -60,3 +58,8 @@ function ProcessRequest()
         }
     }
 }
+
+
+document.addEventListener("DOMContentLoaded", function(event) {
+  getLocation();
+});
