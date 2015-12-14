@@ -12,6 +12,9 @@ function showPosition(position) {
 }
 
 
+
+
+
 var xmlHttp = null;
 
 function getWeatherData(foo, bar)
@@ -58,8 +61,33 @@ function ProcessRequest()
         }
     }
 }
+//
+//
+// document.addEventListener("DOMContentLoaded", function(event) {
+//   getLocation();
+// });
 
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  getLocation();
-});
+
+
+var onSuccess = function(location){
+
+  // var location = location;
+  location = location.location;
+  var latitude = location.latitude;
+  var longitude = location.longitude;
+
+  // console.log(latitude);
+  // console.log(longitude);
+  // console.log(location);
+  getWeatherData(latitude, longitude);
+};
+
+var onError = function(error){
+  alert(
+      "Error:\n\n"
+      + JSON.stringify(error, undefined, 4)
+  );
+};
+
+geoip2.city(onSuccess, onError);
